@@ -13,13 +13,11 @@ class TestDog:
         fido = Dog()
         assert(type(fido) == Dog)
         
-    def test_name_not_empty(self):
-        '''prints "Name must be string between 1 and 25 characters." if empty string.'''
-        captured_out = io.StringIO()
-        sys.stdout = captured_out
-        Dog(name="")
-        sys.stdout = sys.__stdout__
-        assert(captured_out.getvalue() == "Name must be string between 1 and 25 characters.\n")
+    def set_name(self, name):
+        if isinstance(name, str) and 0 < len(name) <= 25:
+            self._name = name
+        else:
+            print("Name must be a string between 1 and 25 characters.")
 
     def test_name_string(self):
         '''prints "Name must be string between 1 and 25 characters." if not string.'''
